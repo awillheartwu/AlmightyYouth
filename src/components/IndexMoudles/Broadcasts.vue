@@ -5,11 +5,19 @@
         >Create a Broadcast</Button
       >
       <Modal v-model="modal1" footer-hide>
-        <label>Broadcast to</label>
-        <p>
-          <Button>+ Add a destination</Button>
-          <Button type="text" to="/CameraPannel">Skip, Record only</Button>
-        </p>
+        <label>Broadcast to</label><br />
+
+        <Button>+ Add a destination</Button>
+        <Button type="text" v-if="modal2" @click="modal2 = false"
+          >Skip, Record only</Button
+        >
+        <section v-else>
+          <label>Title</label>
+          <Input v-model="value"> </Input>
+          <Button type="primary" size="large" to="/CameraPannel"
+            >Create Broadcast</Button
+          >
+        </section>
       </Modal>
     </TabPane>
     <TabPane label="Past Broadcasts" name="name2">Past Broadcasts</TabPane>
@@ -20,7 +28,12 @@
 export default {
   name: "Broadcasts",
   data: function () {
-    return { modal1: false };
+    return {
+      modal1: false,
+      modal2: true,
+      modal3: true,
+      value: "",
+    };
   },
   methods: {},
   components: {},
