@@ -1,9 +1,9 @@
 <template>
   <div class="layout">
-    <Layout :style="{minHeight: '98vh'}">
+    <Layout :style="{ minHeight: '98vh' }">
       <Header :style="{ background: '#fff', padding: '0 0px' }">
-        <Menu mode="horizontal" active-name="1">
-          <div class="layout-logo">
+        <Menu mode="horizontal">
+          <div class="layout-logo" @click="ClickJump">
             <Icon type="ios-bug" size="50" />
             <span>Stream<b>Canvas</b></span>
           </div>
@@ -26,8 +26,8 @@
       </Header>
       <Layout>
         <Sider hide-trigger :style="{ background: '#fff' }">
-          <Menu active-name="1-2" width="auto">
-            <MenuItem name="1-1" to="/broadcasts" replace>
+          <Menu active-name="1-1" width="auto" @on-select="select">
+            <MenuItem name="1-1" replace>
               <Icon type="ios-videocam" />
               <span>Broadcasts</span>
             </MenuItem>
@@ -42,11 +42,10 @@
           <Content
             :style="{
               padding: '2px',
-             
               background: '#fff',
             }"
           >
-            <Broadcasts></Broadcasts>
+            <router-view></router-view>
           </Content>
         </Layout>
       </Layout>
@@ -56,16 +55,23 @@
 
 
 <script>
-import Broadcasts from "./IndexMoudles/Broadcasts";
 export default {
   name: "index",
   data: function () {
-    return {};
+    return { contenttype: false };
   },
-  methods: {},
-  components: {
-    Broadcasts,
+  methods: {
+    select(name) {
+      name == "1-1"
+        ? this.$router.push({ name: "broadcasts" })
+        : this.$router.push({ name: "destinations" });
+    },
+    ClickJump(){
+      this.$router.push({ name: "broadcasts" });
+      this.$router.go(0);
+    },
   },
+  components: {},
 };
 </script>
 

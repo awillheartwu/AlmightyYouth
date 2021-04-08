@@ -1,5 +1,5 @@
 <template>
-  <Tabs value="name1" :animated="false">
+  <Tabs value="name1" :animated="false" @on-click="select">
     <TabPane label="Upcoming Broadcasts" name="name1">
       <Button type="primary" @click="modal1 = true" size="large" class="ctr"
         >Create a Broadcast</Button
@@ -14,13 +14,15 @@
         <section v-else>
           <label>Title</label>
           <Input v-model="value"> </Input>
-          <Button type="primary" size="large" to="/CameraPannel"
+          <Button type="primary" size="large" @click="ClickBut"
             >Create Broadcast</Button
           >
         </section>
       </Modal>
     </TabPane>
-    <TabPane label="Past Broadcasts" name="name2">Past Broadcasts</TabPane>
+    <TabPane label="Past Broadcasts" name="name2">
+      <router-view></router-view>
+    </TabPane>
   </Tabs>
 </template>
 
@@ -31,12 +33,22 @@ export default {
     return {
       modal1: false,
       modal2: true,
-      modal3: true,
       value: "",
     };
   },
-  methods: {},
+  methods: {
+    ClickBut() {
+      this.$store.commit("changeCameraName", this.value);
+      this.$router.push({ name: "camerapannel" });
+    },
+    select(name) {
+      name == "name2"
+        ? this.$router.push({ name: "past" })
+        : this.$router.push({ name: "broadcasts" });
+    },
+  },
   components: {},
+  computed: {},
 };
 </script>
 

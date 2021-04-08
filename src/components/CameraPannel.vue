@@ -1,9 +1,11 @@
 <template>
   <div class="layout">
     <Layout :style="{ minHeight: '98vh' }">
-      <Header>Header</Header>
+      <Header :style="{ background: '#fff', padding: '0 0px' }">Header</Header>
       <Layout>
-        <Content>Content</Content>
+        <Content
+          ><p>{{ CameraName }}</p></Content
+        >
         <Sider hide-trigger>Sider</Sider>
       </Layout>
       <Footer>Footer</Footer>
@@ -19,6 +21,11 @@ export default {
   },
   methods: {},
   components: {},
+  computed: {
+    CameraName() {
+      return this.$store.state.cameraname;
+    },
+  },
 };
 </script>
 
