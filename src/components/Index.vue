@@ -8,7 +8,9 @@
             <span>Stream<b>Canvas</b></span>
           </div>
           <div class="layout-nav">
-            <MenuItem name="1"> Upgrade </MenuItem>
+            <MenuItem name="1">
+              <Button type="primary" to="/plan">Upgrade</Button>
+            </MenuItem>
             <Submenu name="2">
               <template slot="title"> My Account </template>
               <MenuGroup title="使用">
@@ -66,7 +68,7 @@ export default {
         ? this.$router.push({ name: "broadcasts" })
         : this.$router.push({ name: "destinations" });
     },
-    ClickJump(){
+    ClickJump() {
       this.$router.push({ name: "broadcasts" });
       this.$router.go(0);
     },
