@@ -1,6 +1,6 @@
 <template>
-  <Tabs value="name1" :animated="false" @on-click="select">
-    <TabPane label="Upcoming Broadcasts" name="name1">
+  <Tabs v-model="tabname" :animated="false" @on-click="select" :value="tabname">
+    <TabPane label="Upcoming Broadcasts" name="broadcasts">
       <Button type="primary" @click="modal1 = true" size="large" class="ctr"
         >Create a Broadcast</Button
       >
@@ -20,7 +20,7 @@
         </section>
       </Modal>
     </TabPane>
-    <TabPane label="Past Broadcasts" name="name2">
+    <TabPane label="Past Broadcasts" name="past">
       <router-view></router-view>
     </TabPane>
   </Tabs>
@@ -34,6 +34,7 @@ export default {
       modal1: false,
       modal2: true,
       value: "",
+      tabname: "",
     };
   },
   methods: {
@@ -42,13 +43,17 @@ export default {
       this.$router.push({ name: "camerapannel" });
     },
     select(name) {
-      name == "name2"
-        ? this.$router.push({ name: "past" })
-        : this.$router.push({ name: "broadcasts" });
+      //console.log(this.$route.name + "/" + this.tabname + "/" + name);
+      this.tabname = name;
+      this.$router.push({ name: name });
     },
   },
   components: {},
   computed: {},
+  mounted() {
+    console.log(this);
+    this.tabname = this.$route.name;
+  },
 };
 </script>
 

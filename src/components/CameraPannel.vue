@@ -26,17 +26,17 @@
               <canvas
                 id="canvas"
                 ref="canvas"
-                width="1000"
-                height="563"
+                width="700"
+                height="400"
               ></canvas>
             </div>
+            <section>
+              <div>videotag</div>
+              <div>cards</div>
+              <div>bottom tools</div>
+            </section>
           </Content>
-          <Sider
-            class="layout-sider"
-            hide-trigger
-            width="500"
-          >
-          </Sider>
+          <Sider class="layout-sider" hide-trigger width="300"> </Sider>
         </Layout>
       </Layout>
     </Layout>
@@ -60,6 +60,7 @@ export default {
       return this.$store.state.cameraname;
     },
   },
+
 };
 </script>
 

@@ -7,9 +7,12 @@
             <Icon type="ios-bug" size="50" />
             <span>Stream<b>Canvas</b></span>
           </div>
+
           <div class="layout-nav">
-            <MenuItem name="1">
-              <Button type="primary" to="/plan">Upgrade</Button>
+            <MenuItem name="1" class="upbutton">
+              <Button  type="primary" to="/plan">
+                Upgrade
+              </Button>
             </MenuItem>
             <Submenu name="2">
               <template slot="title"> My Account </template>
@@ -28,7 +31,7 @@
       </Header>
       <Layout>
         <Sider hide-trigger :style="{ background: '#fff' }">
-          <Menu active-name="1-1" width="auto" @on-select="select">
+          <Menu active-name="1-1" width="auto" @on-select="select" ref="menus">
             <MenuItem name="1-1" replace>
               <Icon type="ios-videocam" />
               <span>Broadcasts</span>
@@ -64,12 +67,17 @@ export default {
   },
   methods: {
     select(name) {
-      name == "1-1"
-        ? this.$router.push({ name: "broadcasts" })
-        : this.$router.push({ name: "destinations" });
+      if (name == "1-1") {
+        this.$router.push({ name: "broadcasts" });
+      } else if (name == "1-2") {
+        this.$router.push({ name: "destinations" });
+      }
     },
     ClickJump() {
       this.$router.push({ name: "broadcasts" });
+      // this.$nextTick(function () {
+      //   this.$refs["menus"].updateActiveName = "1-1";
+      // });
       this.$router.go(0);
     },
   },
@@ -102,10 +110,15 @@ export default {
     font-size: 200%;
   }
 }
+.upbutton {
+   &:after {
+     height: 0px !important;
+   }
+}
 .layout-nav {
   width: auto;
   margin: 0 auto;
-  margin-right: 0px;
+  margin-right: 5px;
   float: right;
 }
 </style>
