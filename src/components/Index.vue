@@ -10,9 +10,7 @@
 
           <div class="layout-nav">
             <MenuItem name="1" class="upbutton">
-              <Button  type="primary" to="/plan">
-                Upgrade
-              </Button>
+              <Button type="primary" to="/plan"> Upgrade </Button>
             </MenuItem>
             <Submenu name="2">
               <template slot="title"> My Account </template>
@@ -63,7 +61,7 @@
 export default {
   name: "index",
   data: function () {
-    return { contenttype: false };
+    return {};
   },
   methods: {
     select(name) {
@@ -111,9 +109,9 @@ export default {
   }
 }
 .upbutton {
-   &:after {
-     height: 0px !important;
-   }
+  &:after {
+    height: 0px !important;
+  }
 }
 .layout-nav {
   width: auto;

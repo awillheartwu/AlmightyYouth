@@ -30,13 +30,15 @@
                 height="400"
               ></canvas>
             </div>
+            <CameraPannelVideoTag />
+            <CameraPannelCards />
             <section>
-              <div>videotag</div>
-              <div>cards</div>
-              <div>bottom tools</div>
+              <CameraPannelBottomTools />
             </section>
           </Content>
-          <Sider class="layout-sider" hide-trigger width="300"> </Sider>
+          <Sider class="layout-sider" hide-trigger width="300">
+            <CameraPannelSider />
+          </Sider>
         </Layout>
       </Layout>
     </Layout>
@@ -44,6 +46,11 @@
 </template>
 
 <script>
+import CameraPannelVideoTag from "./CameraPannelTools/CameraPannelVideoTag";
+import CameraPannelCards from "./CameraPannelTools/CameraPannelCards";
+import CameraPannelBottomTools from "./CameraPannelTools/CameraPannelBottomTools";
+import CameraPannelSider from "./CameraPannelTools/CameraPannelSider";
+
 export default {
   name: "CameraPannel",
   data: function () {
@@ -54,13 +61,17 @@ export default {
       this.$router.push({ name: "broadcasts" });
     },
   },
-  components: {},
+  components: {
+    CameraPannelVideoTag,
+    CameraPannelCards,
+    CameraPannelBottomTools,
+    CameraPannelSider,
+  },
   computed: {
     CameraName() {
       return this.$store.state.cameraname;
     },
   },
-
 };
 </script>
 
