@@ -1,19 +1,19 @@
 <template>
   <div class="layout">
-    <Layout :style="{ minHeight: '98vh' }">
+    <Layout :style="{ minHeight: '96vh' }">
       <Header class="layout-header">
         <div class="layout-logo" @click="ClickJump">
           <Icon type="ios-bug" size="45" />
         </div>
         <span class="CameraName">{{ CameraName }}</span>
         <div class="header-button">
-          <Button type="text">Add a destination</Button>
-          <span
-            >Recording is a
+          <Button class="hb1" type="text">Add a destination</Button>
+          <span>
+            Recording is a
             <a href="/plan" style="text-decoration: underline"
               >premium feature</a
-            ></span
-          >
+            >
+          </span>
           <Button type="primary" to="/record" size="default" disabled
             >Record</Button
           >
@@ -21,22 +21,26 @@
       </Header>
       <Layout>
         <Layout :style="{ padding: '0 2px 2px' }">
-          <Content>
-            <div>
-              <canvas
-                id="canvas"
-                ref="canvas"
-                width="700"
-                height="400"
-              ></canvas>
-            </div>
-            <CameraPannelVideoTag />
-            <CameraPannelCards />
-            <section>
-              <CameraPannelBottomTools />
-            </section>
-          </Content>
-          <Sider class="layout-sider" hide-trigger width="300">
+          <Layout>
+            <Content>
+              <div class="canvas">
+                <canvas
+                  id="canvas"
+                  ref="canvas"
+                  width="1200"
+                  height="700"
+                ></canvas>
+              </div>
+              <CameraPannelVideoTag />
+              <CameraPannelCards />
+            </Content>
+            <Footer>
+              <section>
+                <CameraPannelBottomTools />
+              </section>
+            </Footer>
+          </Layout>
+          <Sider class="layout-sider" hide-trigger width="auto">
             <CameraPannelSider />
           </Sider>
         </Layout>
@@ -78,6 +82,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .layout {
+  display: flex;
   border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
@@ -113,5 +118,11 @@ export default {
 .header-button {
   float: right;
   margin-right: 24px;
+}
+.hb1 {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: rgb(45, 156, 219);
 }
 </style>
