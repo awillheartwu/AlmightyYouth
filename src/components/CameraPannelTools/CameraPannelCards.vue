@@ -4,7 +4,7 @@
     <div ref="minivideo" class="minivideo">
       <div v-if="isdevice" class="novideo">
         <Icon type="ios-warning" size="40" />
-        <br/>
+        <br />
         <span>Devices not connected</span>
       </div>
       <video v-else ref="video" width="164" height="114" autoplay></video>
@@ -23,6 +23,9 @@
       <!--关闭摄像头-->
       <Button type="dashed" @click="closeCamera" shape="circle">
         关闭摄像头
+      </Button>
+      <Button type="dashed" @click="AddCamerabig" shape="circle">
+        Add to Stream
       </Button>
       <!--canvas截取流-->
       <!-- <canvas ref="canvas" width="640" height="480"></canvas> -->
@@ -68,6 +71,9 @@ export default {
         track.stop();
       });
       this.$refs["video"].srcObject = null;
+    },
+    AddCamerabig() {
+      this.$emit('AddCamera');
     },
     // 拍照
     // photograph() {
