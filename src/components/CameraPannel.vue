@@ -30,6 +30,7 @@
                     width="1200"
                     height="834"
                     autoplay
+                    id="videobig"
                   ></video>
                 </div>
                 <div class="bannerposition">
@@ -41,14 +42,15 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="canvas">
+              <div class="canvas">
                 <canvas
                   id="canvas"
                   ref="canvas"
                   width="1200"
                   height="700"
                 ></canvas>
-              </div> -->
+              </div>
+              <div><Button @click="canvasFun">play</Button></div>
 
               <CameraPannelVideoTag />
               <CameraPannelCards @AddCamera="AddCamera" />
@@ -86,6 +88,15 @@ export default {
     ClickJump() {
       this.$router.push({ name: "broadcasts" });
     },
+    canvasFun() {
+      let canvas = document.getElementById("canvas");
+      let video = document.getElementById("videobig");
+      var ctx = canvas.getContext("2d");
+      window.setInterval(function () {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        //console.log(video.currentTime);
+      }, 20);
+    },
     AddCamera() {
       // H5调用电脑摄像头API
       navigator.mediaDevices
@@ -119,6 +130,7 @@ export default {
       return this.$store.state.cameraname;
     },
   },
+  mounted() {},
 };
 </script>
 
