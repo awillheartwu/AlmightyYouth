@@ -7,7 +7,14 @@
         <br />
         <span>Devices not connected</span>
       </div>
-      <video v-else ref="video" width="164" height="114" autoplay></video>
+      <video
+        v-else
+        ref="video"
+        width="164"
+        height="114"
+        autoplay
+        id="video"
+      ></video>
     </div>
     <br />
     <div class="cardbutton">
@@ -73,7 +80,8 @@ export default {
       this.$refs["video"].srcObject = null;
     },
     AddCamerabig() {
-      this.$emit('AddCamera');
+      this.$emit("canvasFun");
+      //this.$emit('AddCamera');
     },
     // 拍照
     // photograph() {

@@ -24,7 +24,7 @@
           <Layout>
             <Content>
               <div class="videocase">
-                <div>
+                <!-- <div>
                   <video
                     ref="videobig"
                     width="1200"
@@ -32,6 +32,14 @@
                     autoplay
                     id="videobig"
                   ></video>
+                </div> -->
+                <div class="canvas">
+                  <canvas
+                    id="canvas"
+                    ref="canvas"
+                    width="1200"
+                    height="700"
+                  ></canvas>
                 </div>
                 <div class="bannerposition">
                   <div v-if="isbanner" class="defaultbanner">
@@ -42,18 +50,9 @@
                   </div>
                 </div>
               </div>
-              <div class="canvas">
-                <canvas
-                  id="canvas"
-                  ref="canvas"
-                  width="1200"
-                  height="700"
-                ></canvas>
-              </div>
-              <div><Button @click="canvasFun">play</Button></div>
 
               <CameraPannelVideoTag />
-              <CameraPannelCards @AddCamera="AddCamera" />
+              <CameraPannelCards @canvasFun="canvasFun" ref="cards" />
             </Content>
             <Footer>
               <section>
@@ -90,7 +89,8 @@ export default {
     },
     canvasFun() {
       let canvas = document.getElementById("canvas");
-      let video = document.getElementById("videobig");
+      let video = this.$refs.cards.$refs.video;
+      //let video = document.getElementById("video");
       var ctx = canvas.getContext("2d");
       window.setInterval(function () {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
